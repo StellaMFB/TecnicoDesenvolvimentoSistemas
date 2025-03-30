@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Diário</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Meu Diário</h1>
+        <hr>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-info">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/add" method="POST">
+            <div class="form-group">
+                <label for="data">Data:</label>
+                <input type="date" name="data" id="data" value="{{ today }}" required>
+            </div>
+            <div class="form-group">
+                <label for="nota">Me conte sobre seu dia:</label>
+                <textarea name="nota" id="nota" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <h4>Como você está se sentindo hoje?</h4>
+                <div class="emotions">
+                    <img src="{{ url_for('static', filename='emotions/feliz.png') }}" alt="Feliz" class="emotion" data-sentiment="feliz">
+                    <img src="{{ url_for('static', filename='emotions/divertido.png') }}" alt="Divertido" class="emotion" data-sentiment="divertido">
+                    <img src="{{ url_for('static', filename='emotions/amando.png') }}" alt="Amando" class="emotion" data-sentiment="amando">
+                    <img src="{{ url_for('static', filename='emotions/confuso.png') }}" alt="Confuso" class="emotion" data-sentiment="confuso">
+                    <img src="{{ url_for('static', filename='emotions/triste.png') }}" alt="Triste" class="emotion" data-sentiment="triste">
+                    <img src="{{ url_for('static', filename='emotions/medo.png') }}" alt="Medo" class="emotion" data-sentiment="medo">
+                </div>
+                <input type="hidden" name="sentimento" id="sentimento" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Registre">
+        </form>
+        <hr>
+        <h2>Notas do Diário</h2>
+        <div>
+            {% for entrada in entradas %}
+                <div class="card mb-3">
+                    <div class="card-header">{{ entrada[1] }}
+                        <form action="/excluir/{{ entrada[0] }}" method="post" class="d-inline float-right">
+                            <input type="submit" value="X" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa nota?');">
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ entrada[2] }}</p>
+                        <img src="{{ url_for('static', filename='emotions/' + entrada[3] + '.png') }}" class="img-thumbnail" width="60px">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.emotion').forEach(function(emotion) {
+            emotion.addEventListener('click', function() {
+                document.querySelectorAll('.emotion').forEach(function(emotion) {
+                    emotion.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                document.getElementById('sentimento').value = this.getAttribute('data-sentiment');
+            });
+        });
+    </script>
+</body>
+</html>

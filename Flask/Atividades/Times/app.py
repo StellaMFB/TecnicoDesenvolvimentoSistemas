@@ -1,0 +1,56 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+pontos_time_a = 0
+pontos_time_b = 0
+pontos_time_c = 0
+pontos_time_d = 0
+partidas_jogadas = 0
+total_partidas = 5
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/jogar', methods=['POST'])
+def jogar():
+    global pontos_time_a, pontos_time_b, pontos_time_c, pontos_time_d, partidas_jogadas
+
+    while partidas_jogadas < total_partidas:
+        time = request.form['time']
+        pontos = int(request.form['pontos'])
+
+        match time:
+            case 'A':
+                pontos_time_a += pontos
+            case 'B':
+                pontos_time_b += pontos
+            case 'C':
+                pontos_time_c += pontos
+            case 'D':
+                pontos_time_d += pontos
+
+        partidas_jogadas += 1
+
+        if partidas_jogadas < total_partidas:
+            mensagem = f"Partidas Jogadas: {partidas_jogadas} de {total_partidas}. Continue jogando."
+            return render_template('index.html', mensagem=mensagem)
+
+    vencedor = ''
+    if pontos_time_a > pontos_time_b and pontos_time_a > pontos_time_c and pontos_time_a > pontos_time_d:
+        vencedor = 'Time A'
+    elif pontos_time_b > pontos_time_a and pontos_time_b > pontos_time_c and pontos_time_b > pontos_time_d:
+        vencedor = 'Time B'
+    elif pontos_time_c > pontos_time_a and pontos_time_c > pontos_time_b and pontos_time_c > pontos_time_d:
+        vencedor = 'Time C'
+    elif pontos_time_d > pontos_time_a and pontos_time_d > pontos_time_b and pontos_time_d > pontos_time_c:
+        vencedor = 'Time D'
+    else:
+        vencedor = 'Empate'
+
+    resultado = f"Partidas Encerradas!<br>Time A: {pontos_time_a} pontos<br>Time B: {pontos_time_b} pontos<br>Time C: {pontos_time_c} pontos<br>Time D: {pontos_time_d} pontos<br>Vencedor: {vencedor}"
+    return render_template('resultado.html', resultado=resultado)
+
+if __name__ == '__main__':
+    app.run(debug=True)

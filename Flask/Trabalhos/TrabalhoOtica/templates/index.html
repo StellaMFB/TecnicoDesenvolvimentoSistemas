@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óticas Carol</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <style>
+      body{
+        background-color: lightskyblue;
+      }
+      input[type="radio"] {
+        visibility: hidden;
+      }
+      label {
+        display: block;
+        border: 4px solid #818181;
+        width: 200px;
+        float: left;
+        text-align: center;
+      }
+      input[type="radio"]:checked+label {
+        border-color: rgb(0, 0, 0);
+      }
+      .img {
+        height: 180px;
+        width: 192px;
+      }
+      img#logo{
+        max-width: 100%;
+      }
+      h2{
+        text-align: center;
+      }
+      #radio{
+        width: 68vw;
+        height: 60vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.6);
+      }
+      #bottom{
+        margin-bottom: 5%;
+      }
+      #form{
+        margin-top: 5%;
+        margin-left: 40vh;
+        margin-right: 40vh;
+        margin-bottom: 10%;
+      }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+      <div class="row" id="bottom">
+
+        <div class="col">
+          <img src="{{ url_for('static', filename='otica.png') }}" alt="logo" id="logo">
+          <hr>
+          <h2>Produtos em Promoção</h2>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col">
+          <form action="/compra" method="get">
+            <div id="radio">
+              <input type="radio" name="produto" id="i1" value="Óculos preto quadrado de acetato" checked/>
+              <label for="i1"><img src="{{ url_for('static', filename='preto.png') }}" alt="" class="img">Óculos preto quadrado Material: Acetato<br>Valor: R$ 370</label>
+
+              <input type="radio" name="produto" id="i2" value="Óculos redondo dourado de metal"/>
+              <label for="i2"><img src="{{ url_for('static', filename='titanio.jpg') }}" alt="" class="img">Óculos redondo dourado Material: Metal<br>Valor: R$ 410</label>
+
+              <input type="radio" name="produto" id="i3" value="Óculos preto quadrado de metal"/>
+              <label for="i3"><img src="{{ url_for('static', filename='quadrado.png') }}" alt="" class="img">Óculos preto quadrado Material: Metal<br>Valor: R$ 399</label>
+            </div>
+
+            <div id="radio">
+              <input type="radio" name="produto" id="i4" value="Óculos de grau nude de acetato"/>
+              <label for="i4"><img src="{{ url_for('static', filename='nude.webp') }}" alt="" class="img">Óculos de grau nude Material: Acetato<br>Valor: R$ 349</label>
+
+              <input type="radio" name="produto" id="i5" value="Óculos de sol Oakley de acetato"/>
+              <label for="i5"><img src="{{ url_for('static', filename='oakley.webp') }}" alt="" class="img">Óculos de sol Oakley Material: Acetato<br>Valor: R$ 490</label>
+
+              <input type="radio" name="produto" id="i6" value="Óculos de sol Aviador de metal"/>
+              <label for="i6"><img src="{{ url_for('static', filename='sol.jpg') }}" alt="" class="img">Óculos de sol Aviador Material: Metal<br>Valor: R$ 420</label>
+            </div>
+
+            
+            <div id="form">
+              <div class="mb-3">
+                Quantidade: <input type="number" class="form-control" id="qtd" name="quantidade" min="1" required>
+              </div>
+              <br>
+              <div class="mb-3">
+                Tipo de Pagamento: 
+                <select class="form-select" aria-label="Default select example" name="mpagamento" required>
+                  <option value="Crédito">Crédito</option>
+                  <option value="Débito">Débito</option>
+                </select>
+              </div>
+              <br>
+              <div class="d-grid gap-2">
+                <button class="btn btn-secondary" type="submit" name="submit">Comprar</button>
+              </div>
+            </div>
+          </form>
+          
+        </div>
+
+      </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+.emotions img {
+    width: 60px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.emotions img.selected {
+    opacity: 1;
+}
+
+.emotion {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.emotion.selected {
+    opacity: 1;
+}
+
+.emotion:hover {
+    opacity: 1;
+}

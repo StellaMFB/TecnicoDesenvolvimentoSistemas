@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Times de São Paulo</title>
+  </head>
+  <body>
+
+    <div class="conteiner">
+
+      <div class="row">
+
+        <div class="col-sm-4"></div>
+
+        <div class="col-sm-4" id="txt">
+            <form id="ftxt">
+              <div class="mb-3">
+                <label for="txtnome" class="form-label" id="lbnome"><b>Digite seu Primeiro Nome:</b></label>
+                <input type="text" class="form-control" id="txtnome">
+              </div><br>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="time" id="corinthians" value="Corinthians" checked>
+                <label class="form-check-label" for="corinthians">
+                  Corinthians
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="time" id="palmeiras" value="Palmeiras">
+                <label class="form-check-label" for="palmeiras">
+                  Palmeiras
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="time" id="saopaulo" value="São Paulo">
+                <label class="form-check-label" for="saopaulo">
+                  São Paulo
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="time" id="santos" value="Santos">
+                <label class="form-check-label" for="santos">
+                  Santos
+                </label>
+              </div>
+              <div id="btn">
+                <button type="button" class="btn btn-secondary" id="btnconfirmar"><b>Confirmar</b></button>
+              </div>
+            </form>
+        </div>
+
+        <div class="col-sm-4"></div>
+        
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

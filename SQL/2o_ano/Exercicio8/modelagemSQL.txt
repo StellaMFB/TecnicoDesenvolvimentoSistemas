@@ -1,0 +1,33 @@
+CREATE DATABASE aleatorio;
+USE aleatorio;
+
+CREATE TABLE departamentos (
+  departamento_id INT PRIMARY KEY AUTO_INCREMENT,
+  departamento_nome VARCHAR(50) NOT NULL,
+  departamento_localizacao VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE funcionarios (
+  funcionario_id INT PRIMARY KEY AUTO_INCREMENT,
+  funcionario_nome VARCHAR(50) NOT NULL,
+  funcionario_data_contratacao DATE NOT NULL,
+  funcionario_cargo VARCHAR(50) NOT NULL,
+  departamento_id_FK INT NOT NULL,
+  FOREIGN KEY (departamento_id_FK) REFERENCES departamentos (departamento_id)
+);
+
+INSERT INTO departamentos (departamento_nome, departamento_localizacao) VALUES 
+('TI', 'Terceiro andar'),
+('RH', 'Primeiro andar'),
+('Coordenação', 'Segundo andar');
+
+INSERT INTO funcionarios (funcionario_nome, funcionario_data_contratacao, funcionario_cargo, departamento_id_FK) VALUES 
+('Stella', '2024-10-04', 'Programadora', 1),
+('Sasha', '2021-03-20', 'Coordenadora de RH', 2),
+('Igor', '2015-12-30', 'Coordenador', 3);
+
+SELECT departamentos.departamento_nome, funcionarios.funcionario_nome
+FROM departamentos
+INNER JOIN funcionarios
+ON departamentos.departamento_id = funcionarios.departamento_id_FK;
+

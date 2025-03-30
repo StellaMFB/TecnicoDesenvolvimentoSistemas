@@ -1,0 +1,44 @@
+CREATE DATABASE aleatorio;
+USE aleatorio;
+
+CREATE TABLE ordens (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	cliente_id INT,
+	produto VARCHAR(50),
+	quantidade INT
+);
+
+CREATE TABLE clientes (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	nome_cliente VARCHAR(50),
+	cidade VARCHAR(50)
+);
+
+INSERT INTO ordens (cliente_id, produto, quantidade) VALUES 
+(1, 'melancia', 10),
+(2, 'brócolis', 35),
+(3, 'maçã', 21),
+(4, 'pera', 7),
+(5, 'banana', 59),
+(6, 'laranja', 101),
+(7, 'kiwi', 234),
+(8, 'cenoura', 544),
+(9, 'couve-flor', 76),
+(10, 'pitaya', 80);
+
+INSERT INTO clientes (nome_cliente, cidade) VALUES 
+('franco', 'geraldina'),
+('heitor', 'vagem'),
+('beatrice', 'capão bonito'),
+('amanda', 'sorocaba'),
+('adriana', 'curitiba'),
+('danny', 'são paulo'),
+('frank', 'são paulo'),
+('albert', 'brooklyn'),
+('stella', 'nova orleans'),
+('victoria', 'paris');
+
+SELECT clientes.nome_cliente, ordens.produto
+FROM clientes
+RIGHT JOIN ordens ON clientes.id = ordens.cliente_id
+WHERE cidade = 'são paulo';

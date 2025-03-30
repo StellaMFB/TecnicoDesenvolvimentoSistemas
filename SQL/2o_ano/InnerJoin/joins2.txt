@@ -1,0 +1,102 @@
+
+CREATE DATABASE aleatorio;
+USE aleatorio;   
+
+CREATE TABLE livros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100),
+    autor_id INT
+);
+
+CREATE TABLE autores (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome_autor VARCHAR(50)
+);
+
+CREATE TABLE editoras (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome_editora VARCHAR(50),
+    autor_id INT
+);
+
+INSERT INTO livros (titulo, autor_id) VALUES 
+('A volta dos que não foram.', 1),
+('Fogo na caixa de água.', 2),
+('As tranças do rei careca.', 3),
+('O ceifador.', 4),
+('O corvo.', 5),
+('O gato preto.', 6),
+('Um estudo em vermelho.', 7),
+('Brooklyn 99.', 8),
+('Sherlock Holmes.', 9),
+('Ana e o homem das andorinhas.', 10);
+
+INSERT INTO autores (nome_autor) VALUES 
+('José Nilton'),
+('Hiuston'),
+('Stackovisk'),
+('Stella Maris'),
+('Alan Poe'),
+('Victorio'),
+('Beatrice'),
+('Marylin'),
+('Julie'),
+('Ada');
+
+INSERT INTO editoras (nome_editora, autor_id) VALUES 
+('Roccoci', 1),
+('Tigre', 2),
+('Patolino', 3),
+('Bela vista', 4),
+('Visão', 5),
+('Imao', 6),
+('History', 7),
+('Chapolin', 8),
+('Zé das chaves', 9),
+('Yogurt', 10);
+
+   
+SELECT livros.titulo, autores.nome_autor, editoras.nome_editora
+FROM livros
+INNER JOIN autores ON autores.id = livros.autor_id
+INNER JOIN editoras ON autores.id = editoras.autor_id;
+
+CREATE TABLE estudantes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    curso_id INT
+);
+
+CREATE TABLE cursos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome_curso VARCHAR(50),
+    ativo BOOLEAN
+);
+
+INSERT INTO estudantes (nome, curso_id) VALUES 
+('José Nilton', 1),
+('Hiuston', 2),
+('Stackovisk', 3),
+('Stella Maris', 4),
+('Alan Poe', 5),
+('Victorio', 6),
+('Beatrice', 7),
+('Marylin', 8),
+('Julie', 9),
+('Ada', 10);
+
+INSERT INTO cursos (nome_curso, ativo) VALUES 
+('Eletrotécnica', true),
+('Canto', false),
+('Música', true),
+('Ciência da Computação', true),
+('Letras', true),
+('Perfumaria', false),
+('Jornalismo', true),
+('Moda', false),
+('Química', true),
+('Biologia', true);
+
+SELECT estudantes.nome, cursos.nome_curso
+FROM estudantes
+LEFT JOIN cursos ON (estudantes.curso_id = cursos.id);

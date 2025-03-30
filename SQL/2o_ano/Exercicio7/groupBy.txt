@@ -1,0 +1,24 @@
+CREATE DATABASE aleatorio;
+USE aleatorio;
+
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vendedor VARCHAR(100),
+    produto VARCHAR(100),
+    quantidade INT,
+    valor DECIMAL(10, 2),
+    data_venda DATE
+);
+
+INSERT INTO vendas (vendedor, produto, quantidade, valor, data_venda) VALUES 
+('Greta', 'melancia', 19, 37.56, '2023-04-20'),
+('Luís', 'melão', 10, 45.78, '2024-06-10'),
+('Brucelin', 'mamão', 3, 14.99, '2024-02-08'),
+('Igor', 'morango', 1, 50.00, '2022-05-23'),
+('Sasha', 'cenoura', 6, 20.60, '2023-04-20');
+
+SELECT vendedor, SUM(quantidade) AS total_vendas FROM vendas GROUP BY vendedor;
+
+SELECT produto, SUM(quantidade) AS total_vendas FROM vendas GROUP BY produto;
+
+SELECT data_venda, SUM(quantidade) AS total_vendas FROM vendas GROUP BY data_venda;

@@ -1,0 +1,27 @@
+
+        img{
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 5px;
+        }
+        p{
+            font-size: 30px;
+            text-align: justify;
+        }
+        body{
+            background-image: url(pena.png);
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-attachment: fixed;
+            margin-right: 200px;
+            margin-left: 500px;
+        }
+        h1{
+            color: navy;
+            font-size: 60px;
+            text-align: left;
+        }
+        h2{
+            font-size: 40px;
+            text-align: left;
+        }

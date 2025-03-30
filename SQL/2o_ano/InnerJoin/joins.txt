@@ -1,0 +1,57 @@
+CREATE DATABASE aleatorio;
+USE aleatorio;
+
+CREATE TABLE classes(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name_turma VARCHAR(50)
+);
+
+CREATE TABLE estudantes(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    class_id INT
+);
+
+INSERT INTO classes(name_turma) VALUES 
+('Desenvolvimento de Sistemas'),
+('Serviços Jurídicos'),
+('Química');
+
+INSERT INTO estudantes(nome, class_id) VALUES 
+('Irís', 1),
+('Danny', 2),
+('Frank', 3);
+
+SELECT classes.name_turma, estudantes.nome
+FROM classes
+INNER JOIN estudantes ON classes.id = estudantes.class_id;
+
+------------------------------------------------------------------
+
+CREATE DATABASE aleatorio;
+USE aleatorio;
+
+CREATE TABLE funcionários(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    department_id INT
+);
+
+CREATE TABLE departamentos(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name_departamento VARCHAR(50)
+);
+
+INSERT INTO funcionários(nome, department_id) VALUES 
+('Irís', 1),
+('Danny', 2),
+('Frank', 3);
+
+INSERT INTO departamentos(name_departamento) VALUES 
+('Ecônomia'),
+('Jornalismo'),
+('RH');
+
+SELECT funcionários.nome, departamentos.name_departamento
+FROM funcionários
+LEFT JOIN departamentos ON funcionários.department_id = departamentos.id;

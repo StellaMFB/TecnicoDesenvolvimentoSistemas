@@ -1,0 +1,217 @@
+create database att2808; 
+use att2808; 
+
+create table Alunos(
+    id_aluno int primary key auto_increment not null, 
+    nome_completo_aluno varchar(150) not null, 
+    cpf_aluno bigint(11) not null,
+    data_nascimento_aluno date not null,
+    endereco_aluno text not null, 
+    telefone_aluno bigint(11) not null, 
+    email_aluno varchar(150) not null, 
+    data_matricula_aluno date not null, 
+    status_aluno enum('Ativo', 'Inativo', 'Concluído'), 
+    foto_aluno blob 
+); 
+ 
+INSERT INTO Alunos (nome_completo_aluno, cpf_aluno, data_nascimento_aluno ,endereco_aluno, telefone_aluno, email_aluno, data_matricula_aluno, status_aluno, foto_aluno)
+VALUES
+('Ana Souza', 12345678901, '2008-02-21', 'Rua das Flores, 123, Jardim Botânico', 21987654321, 'ana.souza@example.com', '2023-01-15', 'Ativo', NULL),
+('Carlos Oliveira', 23456789012, '2008-08-16', 'Avenida Brasil, 456, Centro', 21998765432, 'carlos.oliveira@example.com', '2023-02-20', 'Inativo', NULL),
+('Mariana Santos', 34567890123, '2007-04-15', 'Rua do Sol, 789, Barra', 21991234567, 'mariana.santos@example.com', '2023-03-10', 'Ativo', NULL),
+('Felipe Costa', 45678901234, '2006-10-09', 'Rua da Praia, 321, Ipanema', 21992345678, 'felipe.costa@example.com', '2023-04-05', 'Concluído', NULL),
+('Julia Almeida', 56789012345, '2007-12-17', 'Rua das Acácias, 654, Jardim Botânico', 21993456789, 'julia.almeida@example.com', '2023-05-15', 'Ativo', NULL),
+('Roberto Lima', 67890123456, '2007-09-30', 'Avenida das Américas, 987, Leblon', 21994567890, 'roberto.lima@example.com', '2023-06-22', 'Inativo', NULL),
+('Fernanda Rodrigues', 78901234567, '2007-01-11', 'Rua das Palmeiras, 123, Copacabana', 21995678901, 'fernanda.rodrigues@example.com', '2023-07-30', 'Ativo', NULL),
+('João Silva', 89012345678, '2008-07-10', 'Rua das Orquídeas, 456, Glória', 21996789012, 'joao.silva@example.com', '2023-08-12', 'Concluído', NULL),
+('Camila Pereira', 90123456789, '2007-03-15', 'Avenida Atlântica, 789, Botafogo', 21997890123, 'camila.pereira@example.com', '2023-09-18', 'Ativo', NULL),
+('Luiz Fernando', 12345678901, '2008-01-18', 'Rua dos Lírios, 321, Lapa', 21998901234, 'luiz.fernando@example.com', '2023-10-25', 'Inativo', NULL);
+ 
+create table Professores(
+    id_professor int primary key auto_increment not null, 
+    nome_completo_professor varchar(150) not null, 
+    cpf_professor bigint(11) not null, 
+    endereco_professor text not null, 
+    telefone_professor bigint(11) not null, 
+    email_professor varchar(150) not null, 
+    titulação varchar(60) not null, 
+    data_contratacao_professor date not null
+); 
+ 
+INSERT INTO Professores (nome_completo_professor, cpf_professor, endereco_professor, telefone_professor, email_professor, titulação, data_contratacao_professor)
+VALUES
+('Pedro Almeida', 12345678900, 'Rua das Margaridas, 101, Centro', 21987654321, 'pedro.almeida@example.com', 'Mestre', '2020-01-15'),
+('Laura Costa', 23456789011, 'Avenida Flores, 202, Jardim Botânico', 21998765432, 'laura.costa@example.com', 'Doutora', '2019-03-20'),
+('Ricardo Pereira', 34567890122, 'Rua das Palmeiras, 303, Barra', 21991234567, 'ricardo.pereira@example.com', 'Especialista', '2021-05-10'),
+('Mariana Silva', 45678901233, 'Rua da Praia, 404, Ipanema', 21992345678, 'mariana.silva@example.com', 'Mestre', '2018-07-25'),
+('João Santos', 56789012344, 'Avenida Brasil, 505, Copacabana', 21993456789, 'joao.santos@example.com', 'Doutor', '2022-02-18'),
+('Fernanda Lima', 67890123455, 'Rua das Acácias, 606, Jardim Botânico', 21994567890, 'fernanda.lima@example.com', 'Especialista', '2020-09-12'),
+('Roberto Almeida', 78901234566, 'Rua das Orquídeas, 707, Glória', 21995678901, 'roberto.almeida@example.com', 'Mestre', '2019-11-30'),
+('Camila Rodrigues', 89012345677, 'Avenida Atlântica, 808, Botafogo', 21996789012, 'camila.rodrigues@example.com', 'Doutora', '2021-04-22'),
+('Gustavo Oliveira', 90123456788, 'Rua dos Lírios, 909, Lapa', 21997890123, 'gustavo.oliveira@example.com', 'Especialista', '2018-06-10'),
+('Juliana Costa', 12345678901, 'Rua das Acácias, 101, Jardim Botânico', 21998901234, 'juliana.costa@example.com', 'Mestre', '2023-08-01');
+ 
+create table Cursos(
+    id_curso int primary key auto_increment not null, 
+    nome_curso varchar(50) not null,
+    desc_curso text not null, 
+    duracao_curso int not null, 
+    coordenador_curso_FK int not null, 
+    carga_horaria_total time not null,  
+    foreign key (coordenador_curso_FK) references Professores(id_professor)
+);
+ 
+INSERT INTO Cursos (nome_curso, desc_curso, duracao_curso, coordenador_curso_FK, carga_horaria_total)
+VALUES
+('Introdução à Programação', 'Curso básico de programação em Python.', 30, 1, '30:00:00'),
+('Matemática para Engenharia', 'Curso de matemática aplicada para engenheiros.', 60, 2, '60:00:00'),
+('Redação Técnica', 'Curso sobre técnicas de redação e escrita técnica.', 45, 3, '45:00:00'),
+('Gestão de Projetos', 'Curso sobre práticas e ferramentas de gestão de projetos.', 40, 4, '40:00:00'),
+('Análise de Dados', 'Curso de análise e interpretação de dados.', 50, 5, '50:00:00'),
+('Desenvolvimento Web', 'Curso sobre desenvolvimento de sites e aplicações web.', 70, 6, '70:00:00'),
+('Administração de Banco de Dados', 'Curso sobre gerenciamento e administração de bancos de dados.', 55, 7, '55:00:00'),
+('Engenharia de Software', 'Curso sobre práticas e metodologias de engenharia de software.', 80, 8, '80:00:00'),
+('Marketing Digital', 'Curso sobre estratégias e técnicas de marketing digital.', 35, 9, '35:00:00'),
+('Cibersegurança', 'Curso sobre fundamentos e práticas de cibersegurança.', 65, 10, '65:00:00');
+ 
+create table Disciplinas(
+    id_disciplina int primary key auto_increment not null, 
+    nome_disciplina varchar(50) not null,
+    curso_associado_FK int not null, 
+    carga_horaria_disciplina time not null, 
+    professor_responsavel_FK int not null, 
+    foreign key (curso_associado_FK) references Cursos(id_curso), 
+    foreign key (professor_responsavel_FK) references Professores(id_professor)
+);
+ 
+INSERT INTO Disciplinas (nome_disciplina, curso_associado_FK, carga_horaria_disciplina, professor_responsavel_FK)
+VALUES
+('Lógica de Programação', 1, '30:00:00', 1),
+('Cálculo Diferencial e Integral', 2, '60:00:00', 2),
+('Técnicas de Escrita', 3, '45:00:00', 3),
+('Planejamento e Controle de Projetos', 4, '40:00:00', 4),
+('Estatística Aplicada', 5, '50:00:00', 5),
+('Programação Web Avançada', 6, '70:00:00', 6),
+('Modelagem de Dados', 7, '55:00:00', 7),
+('Metodologias Ágeis', 8, '80:00:00', 8),
+('SEO e Publicidade Online', 9, '35:00:00', 9),
+('Segurança da Informação', 10, '65:00:00', 10);
+ 
+create table Turmas(
+    id_turma int primary key auto_increment not null,
+    curso_associado_turma_FK int not null, 
+    semestre_turma int not null, 
+    horario_aulas_turma time not null,
+    professor_responsavel_turma_FK int not null, 
+    sala_aula_turma int not null, 
+    disciplina_FK int not null, 
+    foreign key (curso_associado_turma_FK) references Cursos(id_curso), 
+    foreign key (professor_responsavel_turma_FK) references Professores(id_professor),
+    foreign key (disciplina_FK) references Disciplinas(id_disciplina)
+);
+ 
+INSERT INTO Turmas (curso_associado_turma_FK, semestre_turma, horario_aulas_turma, professor_responsavel_turma_FK, sala_aula_turma, disciplina_FK)
+VALUES
+(1, 1, '08:00:00', 1, 101, 1),  
+(2, 2, '10:00:00', 2, 102, 2),  
+(3, 1, '14:00:00', 3, 103, 3),  
+(4, 3, '16:00:00', 4, 104, 4),  
+(5, 2, '09:00:00', 5, 105, 5),  
+(6, 4, '11:00:00', 6, 106, 6), 
+(7, 1, '13:00:00', 7, 107, 7),  
+(8, 3, '15:00:00', 8, 108, 8),  
+(9, 2, '17:00:00', 9, 109, 9),  
+(10, 4, '18:00:00', 10, 110, 10);
+ 
+create table Matriculas(
+    id_matricula int primary key auto_increment not null,
+    turma_da_matricula_FK int not null, 
+    data_matricula date not null, 
+    aluno_matriculado_FK int not null,
+    status_matricula enum('Ativo', 'Trancado', 'Concluído'),
+    foreign key (turma_da_matricula_FK) references Turmas(id_turma),
+    foreign key (aluno_matriculado_FK) references Alunos(id_aluno)
+);
+ 
+INSERT INTO Matriculas (turma_da_matricula_FK, data_matricula, aluno_matriculado_FK, status_matricula)
+VALUES
+(1, '2024-01-15', 1, 'Ativo'),     -- Turma 1, Data de matrícula: 15/01/2024, Status: Ativo
+(2, '2024-02-20', 2, 'Trancado'),   -- Turma 2, Data de matrícula: 20/02/2024, Status: Trancado
+(3, '2024-03-10', 3, 'Concluído'),  -- Turma 3, Data de matrícula: 10/03/2024, Status: Concluído
+(4, '2024-04-05', 4, 'Ativo'),     -- Turma 4, Data de matrícula: 05/04/2024, Status: Ativo
+(5, '2024-05-15', 5, 'Ativo'),     -- Turma 5, Data de matrícula: 15/05/2024, Status: Ativo
+(6, '2024-06-22', 6, 'Concluído'),  -- Turma 6, Data de matrícula: 22/06/2024, Status: Concluído
+(7, '2024-07-30', 7, 'Trancado'),   -- Turma 7, Data de matrícula: 30/07/2024, Status: Trancado
+(8, '2024-08-12', 8, 'Ativo'),     -- Turma 8, Data de matrícula: 12/08/2024, Status: Ativo
+(9, '2024-09-18', 9, 'Concluído'),  -- Turma 9, Data de matrícula: 18/09/2024, Status: Concluído
+(10, '2024-10-25', 10, 'Ativo');    -- Turma 10, Data de matrícula: 25/10/2024, Status: Ativo
+ 
+ 
+create table Notas(
+    id_nota int primary key auto_increment not null,
+    matricula_aluno_FK int not null, 
+    tipo_avaliacao varchar(25) not null, 
+    nota_aluno float not null, 
+    media_final_aluno float not null, 
+    disciplina_nota_FK int not null, 
+    foreign key (matricula_aluno_FK) references Matriculas(id_matricula), 
+    foreign key (disciplina_nota_FK) references Disciplinas(id_disciplina)
+);
+ 
+INSERT INTO Notas(matricula_aluno_FK, tipo_avaliacao, nota_aluno, media_final_aluno, disciplina_nota_FK)
+VALUES
+(1, 'Prova 1', 7.50, 8.00, 1),   
+(2, 'Prova 2', 6.75, 7.50, 2), 
+(3, 'Trabalho', 8.00, 8.50, 3),   
+(4, 'Prova 1', 9.25, 9.00, 4),    
+(5, 'Trabalho', 5.50, 6.00, 5),   
+(6, 'Prova 2', 7.80, 7.75, 6),    
+(7, 'Trabalho', 8.90, 9.00, 7),  
+(8, 'Prova 1', 6.40, 6.70, 8),    
+(9, 'Prova 2', 7.60, 7.90, 9),    
+(10, 'Trabalho', 9.50, 9.60, 10);  
+ 
+create table Frequencias(
+    id_frequencia int primary key auto_increment not null,
+    matricula_aluno_FK int not null, 
+    presenca enum ('Presente', 'Ausente', 'Justificado'),
+    data_aula date,
+    disciplina_frequencia_FK int not null, 
+    foreign key (matricula_aluno_FK) references Matriculas(id_matricula), 
+    foreign key (disciplina_frequencia_FK) references Disciplinas(id_disciplina)
+);
+ 
+INSERT INTO Frequencias (matricula_aluno_FK, presenca, data_aula, disciplina_frequencia_FK)
+VALUES
+(1, 'Presente', '2024-01-15', 1),      
+(2, 'Ausente', '2024-01-15', 2),        
+(3, 'Justificado', '2024-01-15', 3),   
+(4, 'Presente', '2024-01-15', 4),      
+(5, 'Presente', '2024-01-15', 5),      
+(6, 'Justificado', '2024-01-15', 6),    
+(7, 'Ausente', '2024-01-15', 7),       
+(8, 'Presente', '2024-01-15', 8),       
+(9, 'Justificado', '2024-01-15', 9),   
+(10, 'Presente', '2024-01-15', 10);
+
+SELECT Alunos.id_aluno, Alunos.nome_completo_aluno, Cursos.id_curso, Cursos.nome_curso 
+FROM Alunos 
+INNER JOIN Matriculas ON Matriculas.aluno_matriculado_FK = Alunos.id_aluno 
+INNER JOIN Turmas ON Matriculas.turma_da_matricula_FK = Turmas.id_turma 
+INNER JOIN Cursos ON Turmas.curso_associado_turma_FK = Cursos.id_curso;
+
+SELECT Turmas.id_turma, Disciplinas.id_disciplina, Disciplinas.nome_disciplina, AVG(Notas.media_final_aluno) AS media_notas
+FROM Turmas
+INNER JOIN Disciplinas ON Turmas.disciplina_FK = Disciplinas.id_disciplina
+INNER JOIN Notas ON Notas.disciplina_nota_FK = Disciplinas.id_disciplina
+GROUP BY Turmas.id_turma, Disciplinas.id_disciplina, Disciplinas.nome_disciplina;
+
+SELECT Alunos.id_aluno, Alunos.nome_completo_aluno, Frequencias.data_aula, Frequencias.presenca, Turmas.id_turma 
+FROM Alunos 
+INNER JOIN Matriculas ON Matriculas.aluno_matriculado_FK = Alunos.id_aluno 
+INNER JOIN Frequencias ON Frequencias.matricula_aluno_FK = Matriculas.id_matricula 
+INNER JOIN Turmas ON Matriculas.turma_da_matricula_FK = Turmas.id_turma;
+
+SELECT Professores.id_professor, Professores.nome_completo_professor, Disciplinas.id_disciplina, Disciplinas.nome_disciplina 
+FROM Professores 
+INNER JOIN Disciplinas ON Disciplinas.professor_responsavel_FK = Professores.id_professor;

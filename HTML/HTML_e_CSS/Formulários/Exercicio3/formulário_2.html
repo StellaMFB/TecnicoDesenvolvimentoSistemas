@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>..:Cadastro:..</h1>
+    <form>
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <label for="x">Insira seu nome: </label>
+            <input type="text" id="tx" placeholder="Digite seu nome"><br>
+            <label for="dt">Insira sua data de nascimento: </label>
+            <input type="date"><br>
+            <label for="opt">Selecione sua série e turma: </label><br>
+            <input type="radio" name="opt">1ºE<br>
+            <input type="radio" name="opt">2ºE<br>
+            <input type="radio" name="opt">3ºE<br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Dados de Acesso</legend>
+            <label for="em">Insira seu email: </label>
+            <input type="email" placeholder="Digite seu email"><br>
+            <label for="sen">Inserir uma senha: </label>
+            <input type="password" placeholder="Digite sua senha">
+        </fieldset>
+
+        <fieldset>
+            <legend>Informações Adicionais</legend>
+            <label for="ch">Cursos que possuo</label><br>
+            <input type="checkbox" name="ch">Excel<br>
+            <input type="checkbox" name="ch">JavaScript<br>
+            <input type="checkbox" name="ch">Inglês<br>
+            <input type="checkbox" name="ch">PHP<br><br>
+            <label for="ge">Grau de Escolaridade: </label>
+            <select name="ge">
+                <option>Nível Fundamental</option>
+                <option>Nível Médio</option>
+                <option selected>Nível Superior</option>
+                <option>Pós Graduação</option>
+                <option>Mestrado/Doutorado</option>
+            </select>
+        </fieldset>
+        <label for="txt">Insira aqui sua mensagem: </label><br>
+        <textarea>Escreva aqui sua mensagem</textarea><br>
+
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpar">
+    </form>
+</body>
+</html>
